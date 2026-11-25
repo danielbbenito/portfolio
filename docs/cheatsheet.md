@@ -45,6 +45,8 @@ export default function Home() {
 | run the site while editing | `npm run dev:web` → open http://localhost:3000 |
 | check for mistakes | `npm run lint:web` |
 | make the production version | `npm run build:web` |
+| run the API while editing | `npm run dev:api` → http://localhost:3001 |
+| run the API's tests | `npm run test:api` |
 | see what changed | `git status` |
 | see history | `git log --oneline` |
 
