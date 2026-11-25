@@ -1,0 +1,28 @@
+# Dependencies (reinstalled from package-lock.json, never committed)
+node_modules/
+
+# Build output
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Secrets: real env files stay local; commit only .env.example
+.env
+.env.*
+!.env.example
+
+# Logs, coverage, tooling
+*.log
+npm-debug.log*
+coverage/
+.vercel/
+.turbo/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
