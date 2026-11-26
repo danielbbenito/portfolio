@@ -41,3 +41,20 @@ Recorded in CLAUDE.md (Architecture). One public repo holding `apps/web` (Next.j
 **Decision:** as above, Next.js 16.4.6, installed through the root workspace (`--skip-install`, then `npm install` at the root, so there is one lockfile).
 
 **Result:** `npm run lint:web` and `npm run build:web` pass; the default page runs at localhost:3000.
+
+---
+
+## 2026-11-27 — Fast-track to a complete v1
+
+**Problem:** Hiring for the target role is moving quickly; the original learn-by-typing pace would take too long. But a site without the contact API and analytics wouldn't show the full-stack skills the role asks for.
+
+**Options:**
+1. Ship a static v1 now; add contact API + analytics after it's live.
+2. Build everything (incl. NestJS contact API, PostgreSQL, PostHog/GA4) at full speed, then share the link once, complete.
+3. Keep the slow teaching pace.
+
+**Trade-offs:** Option 1 gets a link out sooner but the first impression shows little web/back-end work. Option 3 teaches more deeply but misses the hiring window. Option 2 delays the link by roughly a week but the first impression is the full story; teaching becomes breadth-first.
+
+**Decision:** Option 2 (Daniel's call). Claude implements; Daniel directs content/design, reviews, and runs all git operations in Sourcetree. Daniel applies/expresses interest in parallel rather than waiting on the site. The CLAUDE.md fallback (Next.js route handler instead of NestJS) stays available if the API slice slips.
+
+**Result:** _to fill in at launch._
