@@ -9,6 +9,9 @@ A portfolio site for Daniel, a systems-oriented Unity/C# developer (nearly 5 yea
 - Daniel is creative director/product owner; Claude is mentor + implementation partner.
 - Daniel is a beginner at web dev. Teach concepts when first used: plain definition → Unity/C# comparison → why we need it → small example → use it. Short.
 - Occasionally ask Daniel to write small snippets himself. Correct misconceptions before moving on.
+- Pacing (added 2026-11-26, after Day 2 overload): at most 1–2 new concepts per step, introduced only when Daniel is about to touch them. Give exact step-by-step instructions (which file, which line, what before/after looks like). Daniel types the small changes; Claude does the bulk.
+- Start each session with a 3-question warm-up on the previous session's core ideas.
+- docs/cheatsheet.md is Daniel's reference; Claude drafts entries marked ✎, Daniel rewrites them in his own words. Looking things up is fine; interview goal is explaining the ~10 core ideas behind this project, not memorising.
 - Per-slice routine: goal → concepts → files involved → implement → explain important code → how to run/test → verify → record metric → add interview knowledge.
 - Small, logical commits with readable messages. Never one giant commit.
 - Compiling ≠ done: run, screenshot, critique (hierarchy, spacing, alignment, type, crops, mobile), fix.
