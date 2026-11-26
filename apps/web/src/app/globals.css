@@ -1,26 +1,30 @@
 @import "tailwindcss";
 
+/* Design tokens: the site's colours, defined once. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0b0d;
+  --foreground: #ece8df;
+  --mute: #8b909a;
+  --rule: #262930;
 }
 
+/* Turns the tokens into Tailwind classes: bg-background, text-mute, border-rule, bg-voidauto... */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-mute: var(--mute);
+  --color-rule: var(--rule);
+
+  /* One accent per project */
+  --color-voidauto: #e9b949;
+  --color-voidfarm: #3fd9b4;
+  --color-fatanis: #8c7bff;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
