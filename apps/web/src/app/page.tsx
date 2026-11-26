@@ -12,7 +12,9 @@ export default function Home() {
         <p className="font-mono text-sm uppercase tracking-widest text-mute">
           Style check · temporary page
         </p>
-        <h1 className="text-4xl font-bold uppercase">Daniel B. Benito</h1>
+        <h1 className="text-5xl font-black uppercase font-stretch-extra-condensed">
+          Daniel B. Benito
+        </h1>
         <p className="max-w-prose text-lg text-mute">
           Unity/C# systems developer moving into full-stack product engineering.
         </p>
