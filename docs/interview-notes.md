@@ -25,3 +25,5 @@ Added 2026-11-26 (Day 2). Core ideas first; the rest can stay cheat-sheet knowle
 | .gitignore / .gitattributes / .editorconfig | | Cheat-sheet level is enough for now |
 | Design tokens (colours/fonts defined once, used by name) | ★ | Change one token and watch the whole site update |
 | Preparing media for the web (crop, WebP, short muted clips, poster frames) | | Compare page weight before/after when we measure performance |
+| Props: passing data into a component (like Inspector fields on a MonoBehaviour) | ★ | Add a fourth note to the world-graph figure myself |
+| Client component (`"use client"`): code that runs in the browser, e.g. play video when on screen | ★ | Explain why `LoopVideo` needs it and `TitleBlock` doesn't |
