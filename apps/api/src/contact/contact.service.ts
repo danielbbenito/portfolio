@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { DB, type Db } from '../db/database.module.js';
 import { contactMessages } from '../db/schema.js';
+import { ContactNotifier } from './contact-notifier.js';
 import type { ContactDto } from './contact.schema.js';
 
 // A person needs a few seconds to type a message; most bots submit instantly.
@@ -10,7 +11,10 @@ export const MIN_FILL_MS = 3000;
 export class ContactService {
   private readonly logger = new Logger(ContactService.name);
 
-  constructor(@Inject(DB) private readonly db: Db) {}
+  constructor(
+    @Inject(DB) private readonly db: Db,
+    private readonly notifier: ContactNotifier,
+  ) {}
 
   // Returns true if the message was stored, false if it was dropped as spam.
   async submit(dto: ContactDto, now = Date.now()): Promise<boolean> {
@@ -18,11 +22,9 @@ export class ContactService {
       this.logger.warn('Dropped a contact message that looked like spam');
       return false;
     }
-    await this.db.insert(contactMessages).values({
-      name: dto.name,
-      email: dto.email,
-      message: dto.message,
-    });
+    const message = { name: dto.name, email: dto.email, message: dto.message };
+    await this.db.insert(contactMessages).values(message);
+    await this.notifier.notify(message);
     return true;
   }
 
