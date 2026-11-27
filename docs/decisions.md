@@ -110,3 +110,20 @@ Recorded in CLAUDE.md (Architecture). One public repo holding `apps/web` (Next.j
 **Decision:** Resend. The alert is sent after the message is saved and never fails the request: if email is down, the message is still in the database. Reply-to is the visitor's address, so replying answers them directly.
 
 **Result:** _to fill in after the first real alert arrives._
+
+---
+
+## 2026-11-27 — Analytics: one wrapper, two tools, consent only where needed
+
+**Problem:** The site should show which projects people read and whether they get in touch, using PostHog and GA4 (both named in the target role), without a cookie wall in front of a portfolio.
+
+**Options:**
+1. Both tools with cookies, behind a consent banner that blocks both until accepted.
+2. PostHog cookieless (memory persistence) for everyone; GA4 only after consent.
+3. No consent banner, GA4 in "consent mode" sending cookieless pings by default.
+
+**Trade-offs:** Option 1 loses most data (many people ignore banners) and puts a banner on every first visit. Option 3's cookieless pings only become usable data at traffic levels a portfolio won't reach, and the legal position is unclear. Option 2 keeps PostHog's funnels working for every visitor (each visit counts on its own, so no returning-visitor counts) and asks only about GA, which is the tool that sets cookies.
+
+**Decision:** Option 2. A single `track(event, props)` with a typed event schema (`apps/web/src/lib/analytics.ts`, documented in `docs/analytics.md`) sends to both. Analytics starts in `instrumentation-client.ts`, which runs before the page becomes interactive. Both tools switch off cleanly when their env vars are missing, so local dev and previews send nothing.
+
+**Result:** Checked locally with dummy IDs: the consent bar appears; "Allow" loads GA and sets `_ga` cookies; clicking the case-study link pushed `case_study_opened` to GA and attempted a PostHog send; PostHog stored nothing in cookies or localStorage. Live numbers: _to fill in once real traffic arrives._
