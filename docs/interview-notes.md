@@ -23,3 +23,5 @@ Added 2026-11-26 (Day 2). Core ideas first; the rest can stay cheat-sheet knowle
 | Tailwind utility classes | | Swap the site colours to the palette tokens |
 | Dev server vs production build | | Run both myself; compare what each is for |
 | .gitignore / .gitattributes / .editorconfig | | Cheat-sheet level is enough for now |
+| Design tokens (colours/fonts defined once, used by name) | ★ | Change one token and watch the whole site update |
+| Preparing media for the web (crop, WebP, short muted clips, poster frames) | | Compare page weight before/after when we measure performance |
