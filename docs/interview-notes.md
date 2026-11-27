@@ -28,3 +28,7 @@ Added 2026-11-26 (Day 2). Core ideas first; the rest can stay cheat-sheet knowle
 | Props: passing data into a component (like Inspector fields on a MonoBehaviour) | ★ | Add a fourth note to the world-graph figure myself |
 | Shared layout: header/footer written once in `layout.tsx`, wrapping every page (like UI kept alive across scenes) | | Add a link to the header and see it on both pages |
 | Client component (`"use client"`): code that runs in the browser, e.g. play video when on screen | ★ | Explain why `LoopVideo` needs it and `TitleBlock` doesn't |
+| API endpoint + DTO validation: `POST /contact` checks the body against a Zod schema, 400 if wrong | ★ | Add a max length to one field, send a too-long message, read the 400 |
+| Dependency injection: a class asks for what it needs in its constructor (`ContactService` gets the db); Nest builds and hands it over | ★ | Explain how the unit test passes a fake db instead of the real one |
+| Migrations: schema change → generated SQL file → applied on startup | | Add a column to `contact_messages`, run `npm run db:generate`, read the SQL |
+| CORS, rate limiting (429), honeypot spam check | | Explain each in one sentence: who it stops and how |
