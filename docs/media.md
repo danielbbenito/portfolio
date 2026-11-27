@@ -13,7 +13,7 @@ All processing was done with ffmpeg. Images: cropped, then WebP at quality 88. V
 | `voidauto/world-graph-author.webp` | World Graph Author screenshot | crop 1919×910 at y=92: removes the Unity title/menu bars and the status bar (local file path) |
 | `voidauto/encounter-author-formation.webp` | Encounter Author, encounters tab | same crop as above |
 | `voidauto/encounter-author-rooms.webp` | Encounter Author, rooms tab | same crop as above |
-| `voidauto/overview.mp4` | gameplay recording (39 s) | 1.5 s → 38.0 s: cuts the OBS window at both ends |
+| `voidauto/overview.mp4` | gameplay recording (39 s) | 1.5 s → 38.0 s: cuts the OBS window at both ends. Cropped 1920×1040 from y=36 to remove the game window's title bar and bottom border (1280×694) |
 
 Not used yet: the Encounter Author screen recording. At web size the editor text is unreadable, so the two Encounter Author screenshots tell that story better.
 
