@@ -32,3 +32,5 @@ Added 2026-11-26 (Day 2). Core ideas first; the rest can stay cheat-sheet knowle
 | Dependency injection: a class asks for what it needs in its constructor (`ContactService` gets the db); Nest builds and hands it over | ★ | Explain how the unit test passes a fake db instead of the real one |
 | Migrations: schema change → generated SQL file → applied on startup | | Add a column to `contact_messages`, run `npm run db:generate`, read the SQL |
 | CORS, rate limiting (429), honeypot spam check | | Explain each in one sentence: who it stops and how |
+| Analytics wrapper + typed event schema: one `track()` sends to PostHog and GA4; event names are a TypeScript type | ★ | Add one event myself (e.g. `video_played`) following docs/analytics.md, and see it in PostHog |
+| Cookie consent: PostHog without cookies for everyone, GA4 only after "Allow" | | Explain why GA needs consent and cookieless PostHog doesn't |

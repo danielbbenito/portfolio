@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@/lib/analytics";
 
 // Where the API lives. Set NEXT_PUBLIC_API_URL in production; locally the API runs on port 3001.
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
@@ -49,9 +50,12 @@ export function ContactForm() {
       if (res.ok) {
         form.reset();
         setStatus({ kind: "sent" });
+        track("contact_submitted", {});
       } else if (res.status === 429) {
+        track("contact_failed", { reason: "rate_limited" });
         setStatus({ kind: "error", message: "Too many messages from this address. Please try again later, or email me directly." });
       } else if (res.status === 400) {
+        track("contact_failed", { reason: "validation" });
         const body = await res.json().catch(() => null);
         const reasons: string[] = Array.isArray(body?.message) ? body.message : [];
         // The API prefixes each reason with the field name ("email: …"); show just the reason.
@@ -61,6 +65,7 @@ export function ContactForm() {
         throw new Error(`HTTP ${res.status}`);
       }
     } catch {
+      track("contact_failed", { reason: "network" });
       setStatus({ kind: "error", message: "Couldn’t send right now. Please email me directly instead." });
     }
   }
