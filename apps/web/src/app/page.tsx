@@ -4,6 +4,7 @@ import { Figure } from "@/components/Figure";
 import { Label } from "@/components/Label";
 import { LoopVideo } from "@/components/LoopVideo";
 import { TitleBlock } from "@/components/TitleBlock";
+import { TrackedLink } from "@/components/TrackedLink";
 import { WorldGraphFigure } from "@/components/WorldGraphFigure";
 
 export default function Home() {
@@ -57,12 +58,14 @@ export default function Home() {
           </ul>
 
           <div className="mt-10 flex flex-wrap items-baseline gap-x-6 gap-y-2">
-            <Link
+            <TrackedLink
               href="/voidauto"
+              event="case_study_opened"
+              eventProps={{ project: "voidauto", from: "home" }}
               className="font-mono text-sm uppercase tracking-widest text-voidauto underline decoration-voidauto/40 underline-offset-8 hover:decoration-voidauto"
             >
               Read the case study →
-            </Link>
+            </TrackedLink>
             <Label>Code is private · walkthrough on request</Label>
           </div>
         </section>
@@ -185,19 +188,23 @@ export default function Home() {
           <div className="col-span-12 lg:col-span-8">
             <ContactForm />
             <p className="mt-14 font-mono text-xs uppercase tracking-widest text-mute">Or email me directly</p>
-            <a
+            <TrackedLink
               href="mailto:juamibenito8@gmail.com"
+              event="outbound_clicked"
+              eventProps={{ target: "email" }}
               className="text-3xl font-black tracking-tight font-stretch-extra-condensed break-all hover:text-voidauto sm:text-5xl"
             >
               juamibenito8@gmail.com
-            </a>
+            </TrackedLink>
             <p className="mt-4 font-mono text-sm uppercase tracking-widest">
-              <a
+              <TrackedLink
                 href="https://github.com/danielbbenito"
+                event="outbound_clicked"
+                eventProps={{ target: "github" }}
                 className="text-mute underline decoration-rule underline-offset-8 hover:text-foreground"
               >
                 GitHub ↗
-              </a>
+              </TrackedLink>
             </p>
           </div>
         </section>

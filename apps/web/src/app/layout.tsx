@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import { ConsentBar } from "@/components/ConsentBar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ConsentBar />
       </body>
     </html>
   );
