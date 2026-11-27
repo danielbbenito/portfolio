@@ -92,4 +92,21 @@ Recorded in CLAUDE.md (Architecture). One public repo holding `apps/web` (Next.j
 
 **Decision:** Web on Vercel, API on Render (free), database on Neon (free). Daniel creates the accounts.
 
-**Result:** _to fill in after the first deploy._
+**Result (2026-11-27):** All three live, all in Singapore except Vercel's global CDN. Site at `danielbbenito.vercel.app` (the first generated domain redirects there); API at `portfolio-api-m8my.onrender.com`. Render's first deploy took 1 min 21 s; the API connected to Neon and ran the migration on startup. Checked from outside: both pages 200, `/health` ok, an empty body gets 400, and CORS allows only the site's domain. The database driver warned that `sslmode=require` will mean weaker checks in its next major version; the fix is `sslmode=verify-full` in `DATABASE_URL`. Every merge to `main` redeploys both apps automatically.
+
+---
+
+## 2026-11-27 — Email alert for new messages
+
+**Problem:** Messages were stored but nothing told me they'd arrived.
+
+**Options:**
+1. Resend (email API; free plan 100 emails/day; its shared test sender can email the account's own address with no domain setup).
+2. Gmail SMTP with an app password (no new account, but needs Google 2FA, an SMTP library, and a Google password stored on the host).
+3. A daily check of the database (no setup, but easy to forget; slow replies).
+
+**Trade-offs:** Resend is one HTTP call with `fetch`, no extra library, and the key can be revoked without touching my Google account. The test sender only emails me, which is all this needs. A custom domain would be needed to email anyone else.
+
+**Decision:** Resend. The alert is sent after the message is saved and never fails the request: if email is down, the message is still in the database. Reply-to is the visitor's address, so replying answers them directly.
+
+**Result:** _to fill in after the first real alert arrives._
