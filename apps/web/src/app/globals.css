@@ -37,3 +37,28 @@ body {
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
 }
+
+/* Title blocks wipe in from the left when they scroll into view.
+   Only transform/opacity are animated (cheap for the browser).
+   Browsers without scroll-driven animations simply show the block. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .title-wipe {
+      transform-origin: left center;
+      animation: title-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes title-wipe {
+  from {
+    transform: scaleX(0.2);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
