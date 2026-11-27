@@ -8,6 +8,13 @@ dist/
 build/
 *.tsbuildinfo
 
+# Private context for Claude sessions: never published
+docs/private/
+
+# Local Claude Code tooling (preview launch config)
+.claude/launch.json
+.claude/settings.local.json
+
 # Secrets: real env files stay local; commit only .env.example
 .env
 .env.*

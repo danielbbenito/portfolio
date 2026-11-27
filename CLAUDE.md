@@ -9,7 +9,9 @@ A portfolio site for Daniel, a systems-oriented Unity/C# developer (nearly 5 yea
 - Daniel is creative director/product owner; Claude is mentor + implementation partner.
 - Daniel is a beginner at web dev. Teach concepts when first used: plain definition → Unity/C# comparison → why we need it → small example → use it. Short.
 - Occasionally ask Daniel to write small snippets himself. Correct misconceptions before moving on.
-- Pacing (added 2026-11-26, after Day 2 overload): at most 1–2 new concepts per step, introduced only when Daniel is about to touch them. Give exact step-by-step instructions (which file, which line, what before/after looks like). Daniel types the small changes; Claude does the bulk.
+- Pacing (added 2026-11-26, after Day 2 overload): at most 1–2 new concepts per step, introduced only when Daniel is about to touch them. Give exact step-by-step instructions (which file, which line, what before/after looks like).
+- **Fast-track mode (2026-11-27, supersedes "Daniel types small changes"):** goal is the full v1 (incl. contact API + analytics) live in about a week. Claude builds at full speed. Daniel owns content/design calls, critique, and every commit/push/PR/merge in Sourcetree. After each slice: a short plain-words summary + one interview-notes line. Breadth now, depth later.
+- Private project/background details: docs/private/private-context.md (git-ignored). It is the source of truth for project facts alongside this file; never publish it or copy private details (phone number, employer context) into public files.
 - Start each session with a 3-question warm-up on the previous session's core ideas.
 - docs/cheatsheet.md is Daniel's reference; Claude drafts entries marked ✎, Daniel rewrites them in his own words. Looking things up is fine; interview goal is explaining the ~10 core ideas behind this project, not memorising.
 - Per-slice routine: goal → concepts → files involved → implement → explain important code → how to run/test → verify → record metric → add interview knowledge.
@@ -26,7 +28,7 @@ A portfolio site for Daniel, a systems-oriented Unity/C# developer (nearly 5 yea
   - `apps/api`: NestJS + TypeScript, one feature: `POST /contact` (DTO validation, spam protection, rate limiting, PostgreSQL persistence). Hosted separately (choose a current free/cheap host at setup; verify tiers then).
   - PostgreSQL: managed host chosen at setup.
 - **Analytics:** one `track(event, props)` wrapper sends every event to PostHog (funnels, flags) and GA4 (page views + 2–3 key events). Event schema defined once, in code + docs.
-- **Fallback:** if behind schedule on Day 3, replace NestJS with a Next.js route handler (log it).
+- **Fallback:** if the contact-API slice slips, replace NestJS with a Next.js route handler (log it).
 - Out of scope for v1: CMS, blog, theme toggle, auth/admin, queues, AWS migration, making game repos public.
 
 ## Site map (v1)
