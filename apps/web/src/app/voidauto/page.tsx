@@ -221,7 +221,7 @@ export default function VoidAutoPage() {
 
       <Story
         n="03"
-        title="Automation & acceptance"
+        title="Automation pipeline"
         lead="Features land as small, named slices, each with its own editor command. The command opens the main scene, wires up components and data, and refuses to run if the scene isn't in the state it expects, rather than half-applying a change."
       >
         <dl className="grid gap-px border border-rule bg-rule sm:grid-cols-3">
@@ -264,8 +264,8 @@ export default function VoidAutoPage() {
         <ol className="mt-8 grid gap-10 lg:grid-cols-3">
           {[
             [
-              "Written is not accepted",
-              "\"The code exists\" and \"the feature passed Play Mode acceptance\" are different states. I track them separately and say which one I mean.",
+              "Fail loudly, not halfway",
+              "When a slice command or the encounter generator can't finish cleanly, it stops with a clear error. A loud failure is quick to fix; a half-applied change hides until much later.",
             ],
             [
               "Tools are part of the game",
