@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 // Archivo is a variable font: one file covers every weight (100–900)
@@ -27,7 +29,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${archivo.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

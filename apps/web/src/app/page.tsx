@@ -1,33 +1,13 @@
 import Link from "next/link";
 import { Figure } from "@/components/Figure";
+import { Label } from "@/components/Label";
 import { LoopVideo } from "@/components/LoopVideo";
 import { TitleBlock } from "@/components/TitleBlock";
 import { WorldGraphFigure } from "@/components/WorldGraphFigure";
 
-// Small mono label used above sections and for metadata.
-function Label({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <p className={`font-mono text-xs uppercase tracking-widest text-mute ${className}`}>{children}</p>
-  );
-}
-
 export default function Home() {
   return (
-    <>
-      <header className="border-b border-rule">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 font-mono text-xs uppercase tracking-widest">
-          <Link href="/" className="text-foreground hover:text-voidauto focus-visible:text-voidauto">
-            Daniel B. Benito
-          </Link>
-          <ul className="flex gap-5 text-mute">
-            <li><a href="#work" className="hover:text-foreground">Work</a></li>
-            <li><a href="#about" className="hover:text-foreground">About</a></li>
-            <li><a href="#contact" className="hover:text-foreground">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6">
+    <main className="mx-auto w-full max-w-6xl flex-1 px-6">
         {/* Intro */}
         <section className="py-20 sm:py-28">
           <Label>Unity / C# developer · Portfolio 2026</Label>
@@ -219,12 +199,5 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-rule">
-        <div className="mx-auto max-w-6xl px-6 py-6">
-          <Label>© 2026 Daniel B. Benito</Label>
-        </div>
-      </footer>
-    </>
   );
 }
