@@ -58,3 +58,38 @@ Recorded in CLAUDE.md (Architecture). One public repo holding `apps/web` (Next.j
 **Decision:** Option 2 (Daniel's call). Claude implements; Daniel directs content/design, reviews, and runs all git operations in Sourcetree. Daniel applies/expresses interest in parallel rather than waiting on the site. The CLAUDE.md fallback (Next.js route handler instead of NestJS) stays available if the API slice slips.
 
 **Result:** _to fill in at launch._
+
+---
+
+## 2026-11-27 — Contact API: how it's built
+
+**Problem:** The contact form needs an API that validates input, keeps spam out, limits abuse and stores messages in PostgreSQL, built fast, by a beginner, with no PostgreSQL or Docker installed locally.
+
+**Options and trade-offs:**
+- **Validation: Zod schema** through NestJS 12's built-in `StandardSchemaValidationPipe`, over `class-validator` DTO classes. One schema gives both the runtime check and the TypeScript type; fewer decorators to learn.
+- **Database access: Drizzle ORM** over TypeORM/Prisma. The schema is plain TypeScript, queries read like SQL, and `drizzle-kit` writes plain `.sql` migrations that are easy to review. Used stable `drizzle-orm` 0.45 rather than the 1.0 release candidate.
+- **Wiring: a small `DatabaseModule` of my own** instead of the first-party `@nestjs/drizzle` (version 0.0.2, very new). About 40 lines, and it shows how Nest dependency injection works.
+- **Local database: PGlite** (PostgreSQL compiled to WebAssembly, running inside Node) when `DATABASE_URL` is unset; real PostgreSQL when it is set. No local install, and tests get a fresh in-memory database each run. Cost: two driver paths. Both run the same migrations, so the schema can't drift.
+- **Migrations run on startup.** Fine for one API instance; with several instances, move them to a separate release step.
+- **Spam: honeypot field + minimum fill time (3 s)**, answering "ok" either way so bots learn nothing. No CAPTCHA (friction for real visitors, extra third-party script). Can be added later if spam gets through.
+- **Rate limiting: `@nestjs/throttler`**, 60 requests/min per IP for the API, 5 per 10 min for `POST /contact`. In-memory storage is fine for one instance.
+
+**Decision:** as above.
+
+**Result:** 9 tests pass (3 unit, 6 end-to-end, incl. validation, both spam checks and the 429). A message sent from the local site lands in the database.
+
+---
+
+## 2026-11-27 — Hosting for the API and database
+
+**Problem:** The API and database need a free or very cheap home. Tiers change often, so they were checked at setup time.
+
+**Options (checked 2026-11-27):**
+- **API:** Render free web service (no card; sleeps after ~15 idle min, ~1 min to wake). Railway (trial credit, then ~$1/month credit, runs out when always on). Koyeb (free tier unclear for new accounts in 2026).
+- **Database:** Neon free plan (1 GB storage per project, no card, compute sleeps when idle). Render's free Postgres expires after 30 days, so it's not an option for data.
+
+**Trade-offs:** Render's cold start would make the first message after a quiet spell slow. Mitigation: the form pings `GET /health` when the page loads, so the API is waking while the visitor types. A paid always-on instance is the fix if it still feels slow.
+
+**Decision:** Web on Vercel, API on Render (free), database on Neon (free). Daniel creates the accounts.
+
+**Result:** _to fill in after the first deploy._

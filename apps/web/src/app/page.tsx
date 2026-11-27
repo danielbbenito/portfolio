@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactForm } from "@/components/ContactForm";
 import { Figure } from "@/components/Figure";
 import { Label } from "@/components/Label";
 import { LoopVideo } from "@/components/LoopVideo";
@@ -182,6 +183,8 @@ export default function Home() {
             <Label>06 · Contact</Label>
           </div>
           <div className="col-span-12 lg:col-span-8">
+            <ContactForm />
+            <p className="mt-14 font-mono text-xs uppercase tracking-widest text-mute">Or email me directly</p>
             <a
               href="mailto:juamibenito8@gmail.com"
               className="text-3xl font-black tracking-tight font-stretch-extra-condensed break-all hover:text-voidauto sm:text-5xl"

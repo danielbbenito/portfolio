@@ -33,3 +33,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Local PGlite database (the API's dev database)
+.pglite/
